@@ -1,0 +1,949 @@
+<title>Pork Matters B2B</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap">
+
+<style>
+/* ─────────────────────────────────────────────────
+   Layout: full-bleed dark editorial sections
+   alternating with a cream contrast block
+   Pork Matters — premium Omega-3 pork, B2B
+───────────────────────────────────────────────── */
+
+:root {
+  --bg:        #0C0A09;
+  --surf:      #161210;
+  --card:      #1D1916;
+  --fg:        #EDE5DB;
+  --fg-2:      #8C8079;
+  --fg-3:      #504743;
+  --red:       #CC2C2C;
+  --red-hi:    #DF3535;
+  --line:      rgba(255,255,255,.07);
+  --story-bg:  #F3EBE1;
+  --story-fg:  #1A1411;
+  --story-2:   #7A6E68;
+  color-scheme: dark;
+
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'IBM Plex Sans Thai', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:        #F9F5F0;
+    --surf:      #F2EBE2;
+    --card:      #EAE1D8;
+    --fg:        #1A1411;
+    --fg-2:      #7A6E68;
+    --fg-3:      #B0A49E;
+    --line:      rgba(0,0,0,.09);
+    --story-bg:  #1A1411;
+    --story-fg:  #F3EBE1;
+    --story-2:   rgba(243,235,225,.55);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg:        #F9F5F0;
+  --surf:      #F2EBE2;
+  --card:      #EAE1D8;
+  --fg:        #1A1411;
+  --fg-2:      #7A6E68;
+  --fg-3:      #B0A49E;
+  --line:      rgba(0,0,0,.09);
+  --story-bg:  #1A1411;
+  --story-fg:  #F3EBE1;
+  --story-2:   rgba(243,235,225,.55);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Wrapper ── */
+.w {
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-left:  max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* ── Type helpers ── */
+.lbl {
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.lbl-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lbl-rule::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+h2.display, h3.display {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+h2.display { font-size: clamp(2.2rem, 5.5vw, 4.4rem); }
+h3.display { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+
+.body-text {
+  font-size: clamp(.88rem, 1.8vw, 1rem);
+  line-height: 1.75;
+  color: var(--fg-2);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .18s, border-color .18s, color .18s;
+  border: none;
+}
+.btn-red  { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-hi); }
+.btn-ghost { background: transparent; color: var(--fg-2); border: 1px solid var(--line); }
+.btn-ghost:hover { border-color: var(--fg-2); color: var(--fg); }
+
+/* ════════════════════════════
+   NAV
+════════════════════════════ */
+nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 200;
+  padding-block: 14px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-left:  max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+.wordmark {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .82rem;
+  letter-spacing: .16em;
+  color: var(--fg);
+  text-decoration: none;
+}
+.wordmark span { color: var(--red); }
+
+/* ════════════════════════════
+   HERO
+════════════════════════════ */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: clamp(90px, 14svh, 140px);
+  padding-bottom: clamp(60px, 8svh, 100px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative omega rings */
+.hero-rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(204,44,44,.18);
+  animation: breathe 9s ease-in-out infinite;
+}
+.ring:nth-child(1) { width: 700px; height: 700px; top: -180px; right: -160px; animation-delay: 0s; }
+.ring:nth-child(2) { width: 440px; height: 440px; top: -40px; right: 0px; border-color: rgba(204,44,44,.1); animation-delay: -3.5s; }
+.ring:nth-child(3) { width: 180px; height: 180px; top: 200px; right: 200px; border-color: rgba(243,235,225,.07); animation-delay: -7s; }
+@keyframes breathe {
+  0%,100% { opacity: .5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+@media (prefers-reduced-motion: reduce) { .ring { animation: none; } }
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 12rem);
+  font-weight: 600;
+  line-height: .92;
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+  position: relative;
+}
+.hero-title em { font-style: italic; color: var(--red); }
+
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--fg-2);
+  margin-bottom: 6px;
+}
+.hero-sub-th {
+  font-size: clamp(.82rem, 1.8vw, .96rem);
+  color: var(--fg-2);
+  margin-bottom: 36px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ════════════════════════════
+   STATS STRIP
+════════════════════════════ */
+.stats {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding-block: 52px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat-divider { border-right: 1px solid var(--line); }
+.stat-n {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 300;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-n b { color: var(--red); font-weight: 600; }
+.stat-l {
+  font-size: .7rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin-top: 8px;
+}
+.stat-lt {
+  font-size: .7rem;
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+
+/* ════════════════════════════
+   OMEGA FEATURE
+════════════════════════════ */
+.omega {
+  padding-block: clamp(80px, 12vw, 130px);
+}
+.omega-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.omega-visual {
+  display: flex;
+  justify-content: center;
+}
+.omega-ring-wrap {
+  width: min(320px, 80vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.omega-ring-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(204,44,44,.25);
+}
+.omega-center { text-align: center; }
+.omega-big-n {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 12vw, 6.5rem);
+  font-weight: 600;
+  color: var(--red);
+  line-height: 1;
+}
+.omega-big-l {
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin-top: 6px;
+}
+
+.omega-content h2 { margin-bottom: 18px; }
+.omega-content .body-text { margin-bottom: 16px; }
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.pill {
+  padding: 5px 13px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: .75rem;
+  color: var(--fg-2);
+}
+
+/* ════════════════════════════
+   CERTIFICATIONS
+════════════════════════════ */
+.certs {
+  padding-block: clamp(70px, 10vw, 110px);
+  background: var(--surf);
+}
+.cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 56px;
+}
+.cert-card {
+  background: var(--card);
+  padding: 40px 32px;
+  min-width: 0;
+}
+.cert-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.cert-title {
+  font-weight: 600;
+  font-size: .88rem;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+.cert-body {
+  font-size: .83rem;
+  color: var(--fg-2);
+  line-height: 1.65;
+}
+
+/* ════════════════════════════
+   PROCESS
+════════════════════════════ */
+.process {
+  padding-block: clamp(70px, 10vw, 110px);
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 56px;
+  border-top: 1px solid var(--line);
+}
+.step {
+  padding: 32px 24px 32px 0;
+  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+.step:last-child { border-right: none; padding-left: 24px; padding-right: 0; }
+.step-n { font-family: var(--serif); font-size: .95rem; font-style: italic; color: var(--red); margin-bottom: 12px; }
+.step-t { font-weight: 600; font-size: .86rem; margin-bottom: 8px; }
+.step-d { font-size: .8rem; color: var(--fg-2); line-height: 1.6; }
+
+/* ════════════════════════════
+   STORY (cream contrast)
+════════════════════════════ */
+.story {
+  padding-block: clamp(70px, 10vw, 110px);
+  background: var(--story-bg);
+  color: var(--story-fg);
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.story-year {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--red);
+}
+.story-label {
+  font-size: .68rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--story-2);
+  margin-top: 10px;
+}
+.story-body p {
+  font-size: clamp(.88rem, 1.8vw, 1rem);
+  line-height: 1.8;
+  margin-bottom: 18px;
+  color: var(--story-fg);
+  opacity: .82;
+}
+.story-body p:last-child { margin-bottom: 0; opacity: 1; }
+.story-body strong { opacity: 1; font-weight: 600; color: var(--story-fg); }
+
+/* ════════════════════════════
+   CUTS
+════════════════════════════ */
+.cuts {
+  padding-block: clamp(70px, 10vw, 110px);
+}
+.cuts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 56px;
+}
+.cut {
+  background: var(--bg);
+  padding: 28px 24px;
+  min-width: 0;
+}
+.cut-en {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+.cut-th {
+  font-size: .7rem;
+  letter-spacing: .08em;
+  color: var(--fg-2);
+  margin-bottom: 10px;
+}
+.cut-use {
+  font-size: .78rem;
+  color: var(--fg-3);
+  line-height: 1.55;
+}
+
+/* ════════════════════════════
+   PARTNERS
+════════════════════════════ */
+.partners {
+  padding-block: clamp(60px, 8vw, 90px);
+  border-top: 1px solid var(--line);
+}
+.partner-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 44px;
+}
+.ptag {
+  font-size: .78rem;
+  color: var(--fg-2);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 6px 14px;
+  letter-spacing: .03em;
+}
+
+/* ════════════════════════════
+   CTA / CONTACT
+════════════════════════════ */
+.cta-sec {
+  padding-block: clamp(80px, 12vw, 130px);
+  background: var(--surf);
+}
+.cta-inner { max-width: 680px; }
+.cta-body { margin-top: 14px; margin-bottom: 48px; }
+
+.b2b-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fgroup { display: flex; flex-direction: column; gap: 5px; }
+.flabel {
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.finput, .fselect, .ftextarea {
+  font-family: var(--sans);
+  font-size: .88rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--fg);
+  padding: 11px 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color .18s;
+}
+.finput:focus, .fselect:focus, .ftextarea:focus { border-color: var(--red); }
+.ftextarea { min-height: 110px; resize: vertical; }
+.fselect {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%238C8079' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.form-note { font-size: .75rem; color: var(--fg-3); margin-top: 10px; }
+
+.contact-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.calt-method { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 4px; }
+.calt-val { font-family: var(--serif); font-size: 1.15rem; color: var(--fg); user-select: all; }
+
+/* success state */
+.form-success {
+  padding: 36px;
+  background: rgba(204,44,44,.07);
+  border: 1px solid rgba(204,44,44,.18);
+  border-radius: 2px;
+  text-align: center;
+}
+.form-success h3 { font-family: var(--serif); font-size: 2rem; margin-bottom: 8px; }
+.form-success p { color: var(--fg-2); font-size: .9rem; }
+
+/* ════════════════════════════
+   FOOTER
+════════════════════════════ */
+footer {
+  padding-block: 36px;
+  border-top: 1px solid var(--line);
+}
+.foot-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.foot-brand { font-weight: 600; font-size: .8rem; letter-spacing: .14em; }
+.foot-brand span { color: var(--red); }
+.foot-copy { font-size: .74rem; color: var(--fg-3); }
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 860px) {
+  .omega-grid { grid-template-columns: 1fr; gap: 48px; }
+  .omega-visual { order: -1; }
+  .story-grid { grid-template-columns: 1fr; gap: 32px; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .step:nth-child(2) { border-right: none; padding-left: 24px; }
+  .step:nth-child(3) { padding-right: 24px; padding-left: 0; }
+  .cert-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat-divider { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 28px; }
+  .cuts-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .cuts-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .step { border-right: none; border-bottom: 1px solid var(--line); padding: 24px 0; }
+  .step:last-child { border-bottom: none; padding-left: 0; }
+}
+</style>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-row">
+    <a href="#" class="wordmark">PORK&nbsp;<span>MATTERS</span></a>
+    <a href="#contact" class="btn btn-red" style="padding:10px 20px;font-size:.78rem">สอบถาม B2B →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+  <div class="w">
+    <div class="lbl lbl-rule" style="margin-bottom:28px">
+      <span>Freshour × Pork Matters — B2B Partnership</span>
+    </div>
+    <h1 class="hero-title">PORK<br><em>MATTERS</em></h1>
+    <p class="hero-sub">Premium Omega-3 Pork for Professional Kitchens</p>
+    <p class="hero-sub-th">หมูโอเมก้า-3 มาตรฐานส่งออก วิจัยร่วมกับ Cargill Thailand &amp; KMITL<br>สำหรับร้านอาหาร โรงแรม คาเฟ่ และผู้ประกอบการมืออาชีพ</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-red">ติดต่อทีม B2B</a>
+      <a href="#about" class="btn btn-ghost">รู้จัก Pork Matters</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats">
+  <div class="w">
+    <div class="stats-grid">
+      <div class="stat-divider" style="padding-right:24px">
+        <div class="stat-n"><b>3×</b></div>
+        <div class="stat-l">Omega-3 vs Regular Pork</div>
+        <div class="stat-lt">โอเมก้า-3 สูงกว่าหมูทั่วไป</div>
+      </div>
+      <div class="stat-divider" style="padding-inline:24px">
+        <div class="stat-n">10<b>+</b></div>
+        <div class="stat-l">Years of Expertise</div>
+        <div class="stat-lt">ปีแห่งประสบการณ์</div>
+      </div>
+      <div style="padding-left:24px">
+        <div class="stat-n"><b>9</b></div>
+        <div class="stat-l">Premium Retail Locations</div>
+        <div class="stat-lt">จุดจำหน่ายระดับพรีเมียม</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── OMEGA FEATURE ── -->
+<section class="omega" id="about">
+  <div class="w">
+    <div class="omega-grid">
+      <div class="omega-visual">
+        <div class="omega-ring-wrap">
+          <div class="omega-center">
+            <div class="omega-big-n">3×</div>
+            <div class="omega-big-l">Omega-3</div>
+          </div>
+        </div>
+      </div>
+      <div class="omega-content">
+        <p class="lbl" style="margin-bottom:16px">ความแตกต่างที่วิทยาศาสตร์รองรับ</p>
+        <h2 class="display" style="margin-bottom:18px">หมูที่ดีกว่า<br>เพราะวิจัยมาเพื่อมัน</h2>
+        <p class="body-text">Pork Matters เกิดจากความร่วมมืออย่างเป็นทางการระหว่าง <strong style="color:var(--fg)">EK Slaughterhouse</strong>, <strong style="color:var(--fg)">Cargill Thailand</strong> ผู้นำด้านเทคโนโลยีอาหารสัตว์ระดับโลก และ <strong style="color:var(--fg)">KMITL</strong> ผู้วิจัยและรับรองผล — ใช้เวลาพัฒนาถึง 2 ปี เพื่อให้ได้หมูที่มีปริมาณโอเมก้า-3 สูงกว่าหมูทั่วไปถึง 3 เท่า</p>
+        <p class="body-text" style="margin-top:14px">สำหรับเชฟและผู้ประกอบการ นั่นหมายถึงวัตถุดิบที่ <strong style="color:var(--fg)">เนื้อนุ่มละลาย</strong> มีกลิ่นหอมเฉพาะตัว รสชาติที่เข้มข้นขึ้น และยกระดับคุณค่าทางโภชนาการของทุกเมนูโดยอัตโนมัติ — โดยไม่ต้องเปลี่ยนสูตร</p>
+        <div class="pills">
+          <span class="pill">เนื้อนุ่ม ละลายในปาก</span>
+          <span class="pill">กลิ่นหอมเฉพาะตัว</span>
+          <span class="pill">โอเมก้า-3 สูง 3×</span>
+          <span class="pill">Export Grade</span>
+          <span class="pill">ทำได้ทุกเมนู</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section class="certs">
+  <div class="w">
+    <p class="lbl" style="margin-bottom:16px">มาตรฐานและการรับรอง</p>
+    <h2 class="display">ทุกชิ้น ผ่านการรับรอง<br>ระดับสากล</h2>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2c0 0 2 3 7 3.5C17 10.5 14.5 15 10 18 5.5 15 3 10.5 3 5.5 8 5 10 2 10 2z" stroke="var(--red)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cert-title">MOU — Cargill Thailand</div>
+        <div class="cert-body">ผู้นำด้านเทคโนโลยีอาหารสัตว์ระดับโลก ร่วมพัฒนาสูตรอาหารพิเศษเพื่อเพิ่มปริมาณโอเมก้า-3 ในหมูให้สูงสุด ภายใต้สัญญาความร่วมมืออย่างเป็นทางการ (MOU)</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="3" width="14" height="14" rx="1.5" stroke="var(--red)" stroke-width="1.4" fill="none"/>
+            <path d="M6.5 10l3 3 4-5" stroke="var(--red)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cert-title">KMITL — วิจัย &amp; รับรองผล</div>
+        <div class="cert-body">สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL) วิเคราะห์และรับรองปริมาณโอเมก้า-3 อย่างเป็นทางการ รับรองทางวิทยาศาสตร์ครบวงจร</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="7" stroke="var(--red)" stroke-width="1.4" fill="none"/>
+            <path d="M10 6.5v3.5l2.5 1.5" stroke="var(--red)" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cert-title">GAP Certified Farm</div>
+        <div class="cert-body">ฟาร์มต้นทางผ่านการรับรองมาตรฐาน Good Agricultural Practice (GAP) ครบทุกขั้นตอน ตั้งแต่พันธุ์สัตว์ การเลี้ยง จนถึงการจัดการสุขภาพ</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L12.5 7H18L13.5 10.5L15.5 16L10 12.5L4.5 16L6.5 10.5L2 7H7.5L10 2Z" stroke="var(--red)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cert-title">FMD Free — ปลอดโรค FMD</div>
+        <div class="cert-body">ปลอดโรคปากและเท้าเปื่อย (Foot-and-Mouth Disease) สามารถเข้าเขตควบคุมพิเศษได้ รองรับลูกค้าระดับพรีเมียมและตลาดส่งออก</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="process">
+  <div class="w">
+    <p class="lbl" style="margin-bottom:16px">กระบวนการผลิต</p>
+    <h2 class="display">จากฟาร์มถึงครัวของคุณ<br><em style="font-style:italic;color:var(--fg-2);font-weight:300">ทุกขั้นตอนคุมด้วยมาตรฐาน</em></h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-n">01.</div>
+        <div class="step-t">ฟาร์มมาตรฐาน GAP</div>
+        <div class="step-d">เลือกพันธุ์หมูที่เหมาะสม เลี้ยงด้วยอาหารสูตรพิเศษจาก Cargill ในสภาพแวดล้อมที่ควบคุมอย่างเคร่งครัด</div>
+      </div>
+      <div class="step">
+        <div class="step-n">02.</div>
+        <div class="step-t">โรงงาน Export Grade</div>
+        <div class="step-d">ชำแหละในโรงงานมาตรฐานส่งออก กว่า 2,000 ตร.ม. พร้อมระบบ Automation ที่ทันสมัย ประสิทธิภาพสูงขึ้น 2 เท่า</div>
+      </div>
+      <div class="step">
+        <div class="step-n">03.</div>
+        <div class="step-t">ตรวจรับรองโอเมก้า-3</div>
+        <div class="step-d">KMITL วิเคราะห์และรับรองปริมาณโอเมก้า-3 ทุก batch เพื่อยืนยันคุณภาพก่อนออกสู่ตลาด</div>
+      </div>
+      <div class="step">
+        <div class="step-n">04.</div>
+        <div class="step-t">Cold Chain ถึงครัวคุณ</div>
+        <div class="step-d">ระบบควบคุมอุณหภูมิตลอดการขนส่ง รับรองความสดใหม่และความปลอดภัยของอาหารถึงมือลูกค้า</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STORY ── -->
+<section class="story" id="story">
+  <div class="w">
+    <div class="story-grid">
+      <div>
+        <div class="story-label">ก่อตั้ง</div>
+        <div class="story-year">2525</div>
+        <div class="story-label" style="margin-top:10px">จากธุรกิจครอบครัว<br>สู่หมูพรีเมียมที่ตลาดรอคอย</div>
+      </div>
+      <div class="story-body">
+        <p><strong>EK Slaughterhouse Co., Ltd</strong> ดำเนินธุรกิจผลิตชิ้นส่วนสุกรอนามัยมาตรฐานส่งออกแบบครบวงจรมากกว่า 10 ปี ด้วยยอดขายกว่า 700–800 ล้านบาทต่อปี และโรงงานขนาดกว่า 2,000 ตร.ม. บนพื้นที่ 10 ไร่ ที่พร้อมรองรับความต้องการระดับพรีเมียม</p>
+        <p>ในปี 2565 เราลงนาม MOU ร่วมกับ <strong>Cargill Thailand</strong> และ <strong>KMITL</strong> เพื่อพัฒนาหมูที่มีโอเมก้า-3 สูงกว่าปกติ 3 เท่า ใช้เวลาวิจัย 2 ปีเต็ม — และในปี 2567 <strong>Pork Matters</strong> จึงได้เกิดขึ้น</p>
+        <p>วางจำหน่ายที่ Freshour Supermarket และ Gourmet Market ทั้ง 9 สาขา รวมถึงได้รับเกียรติจากเชฟชั้นนำรังสรรค์เมนูพิเศษที่ <strong>Royal Osha</strong> ตลอดเดือนแห่งวันแม่ — ยืนยันว่า Pork Matters คือหมูระดับพรีเมียมสำหรับมืออาชีพอย่างแท้จริง</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CUTS ── -->
+<section class="cuts">
+  <div class="w">
+    <p class="lbl" style="margin-bottom:16px">ชิ้นส่วนสำหรับ B2B</p>
+    <h2 class="display">วัตถุดิบพรีเมียม<br>ทุกชิ้นที่ครัวต้องการ</h2>
+    <div class="cuts-grid">
+      <div class="cut">
+        <div class="cut-en">Pork Tenderloin</div>
+        <div class="cut-th">หมูสันใน</div>
+        <div class="cut-use">นุ่มที่สุด เหมาะสำหรับ grilling, roasting และเมนู fine dining ระดับสูง</div>
+      </div>
+      <div class="cut">
+        <div class="cut-en">Pork Loin</div>
+        <div class="cut-th">หมูสันนอก</div>
+        <div class="cut-use">เนื้อแน่น ไขมันพอดี สำหรับ pork chop, tonkatsu, schnitzel</div>
+      </div>
+      <div class="cut">
+        <div class="cut-en">Pork Collar</div>
+        <div class="cut-th">หมูคอ</div>
+        <div class="cut-use">ไขมันแทรกธรรมชาติ เนื้อฉ่ำ สำหรับ BBQ, yakiniku, moo krob</div>
+      </div>
+      <div class="cut">
+        <div class="cut-en">Pork Belly</div>
+        <div class="cut-th">หมูสามชั้น</div>
+        <div class="cut-use">ชั้นไขมันสมบูรณ์แบบ สำหรับ braising, หมูกรอบ, kakuni, bao</div>
+      </div>
+      <div class="cut">
+        <div class="cut-en">Spare Ribs</div>
+        <div class="cut-th">ซี่โครงหมู</div>
+        <div class="cut-use">เนื้อติดกระดูกรสเข้ม สำหรับ BBQ ribs, ซี่โครงหวาน, สตูว์</div>
+      </div>
+      <div class="cut">
+        <div class="cut-en">Ground Pork</div>
+        <div class="cut-th">หมูบด</div>
+        <div class="cut-use">บดสด สะอาด เหมาะทุกเมนูตั้งแต่ลาบไทยถึง pasta Bolognese</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERS ── -->
+<section class="partners">
+  <div class="w">
+    <p class="lbl" style="margin-bottom:16px">ลูกค้าและพันธมิตร</p>
+    <h2 class="display" style="margin-bottom:0">Pork Matters วางจำหน่าย<br>ในแบรนด์ชั้นนำ</h2>
+    <div class="partner-list">
+      <span class="ptag">Gourmet Market — Siam Paragon</span>
+      <span class="ptag">Gourmet Market — Emporium</span>
+      <span class="ptag">Gourmet Market — EmQuartier</span>
+      <span class="ptag">Gourmet Market — Emsphere</span>
+      <span class="ptag">The Mall บางกะปิ</span>
+      <span class="ptag">The Mall ท่าพระ</span>
+      <span class="ptag">The Mall บางแค</span>
+      <span class="ptag">SB Design Square ราชพฤกษ์</span>
+      <span class="ptag">Design Village บางนา</span>
+      <span class="ptag">Freshour Supermarket — Aree</span>
+      <span class="ptag">Villa Market — หลังสวน</span>
+      <span class="ptag">Villa Market — ทองหล่อ</span>
+      <span class="ptag">Royal Osha — Chef Collaboration ✦</span>
+    </div>
+    <p style="margin-top:20px;font-size:.8rem;color:var(--fg-3)">และอีกหลายสาขาที่กำลังขยายในปี 2570</p>
+  </div>
+</section>
+
+<!-- ── CTA / CONTACT ── -->
+<section class="cta-sec" id="contact">
+  <div class="w">
+    <div class="cta-inner">
+      <p class="lbl" style="margin-bottom:14px">B2B Partnership</p>
+      <h2 class="display">พร้อมส่งหมูพรีเมียม<br>ถึงครัวของคุณ</h2>
+      <p class="body-text cta-body">กรอกข้อมูลเพื่อให้ทีม Pork Matters B2B ติดต่อกลับ พร้อมเสนอราคาและเงื่อนไขที่เหมาะสมกับธุรกิจของคุณ</p>
+
+      <form class="b2b-form" id="b2bForm">
+        <div class="form-row">
+          <div class="fgroup">
+            <label class="flabel" for="f-name">ชื่อ-นามสกุล</label>
+            <input class="finput" type="text" id="f-name" placeholder="คุณสมชาย ใจดี" required>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="f-biz">ชื่อกิจการ / ร้านอาหาร</label>
+            <input class="finput" type="text" id="f-biz" placeholder="Restaurant Name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fgroup">
+            <label class="flabel" for="f-phone">เบอร์โทรศัพท์</label>
+            <input class="finput" type="tel" id="f-phone" placeholder="08X-XXX-XXXX" required>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="f-type">ประเภทธุรกิจ</label>
+            <select class="fselect" id="f-type">
+              <option value="">เลือกประเภท...</option>
+              <option>ร้านอาหาร</option>
+              <option>โรงแรม / Hotel</option>
+              <option>คาเฟ่ / Bistro</option>
+              <option>Catering</option>
+              <option>Food Delivery</option>
+              <option>Retail / Supermarket</option>
+              <option>อื่นๆ</option>
+            </select>
+          </div>
+        </div>
+        <div class="fgroup">
+          <label class="flabel" for="f-vol">ปริมาณที่ต้องการ (โดยประมาณ/สัปดาห์)</label>
+          <input class="finput" type="text" id="f-vol" placeholder="เช่น 20 กก./สัปดาห์">
+        </div>
+        <div class="fgroup">
+          <label class="flabel" for="f-msg">ข้อความเพิ่มเติม</label>
+          <textarea class="ftextarea" id="f-msg" placeholder="ชิ้นส่วนที่สนใจ เวลาที่สะดวกให้ติดต่อ หรือคำถามเพิ่มเติม"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-red">ส่งข้อมูลติดต่อ B2B →</button>
+          <p class="form-note">ทีมงานจะติดต่อกลับภายใน 1 วันทำการ</p>
+        </div>
+      </form>
+
+      <div class="form-success" id="formOK" hidden>
+        <h3>ขอบคุณครับ!</h3>
+        <p>ทีม Pork Matters B2B ได้รับข้อมูลของคุณแล้ว<br>จะติดต่อกลับภายใน 1 วันทำการ</p>
+      </div>
+
+      <div class="contact-alt">
+        <div>
+          <p class="calt-method">หรือติดต่อผ่าน LINE OA</p>
+          <a href="https://line.me/R/ti/p/@freshourbkk" target="_blank" rel="noopener"
+             class="btn btn-ghost" style="margin-top:8px;gap:8px;display:inline-flex;align-items:center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            @freshourbkk
+          </a>
+        </div>
+        <div>
+          <p class="calt-method">LINE OA (QR Code)</p>
+          <a href="https://page.line.me/freshourbkk?openQrModal=true" target="_blank" rel="noopener"
+             class="calt-val" style="font-size:.9rem;color:var(--fg-2);text-decoration:none">
+            page.line.me/freshourbkk
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="w">
+    <div class="foot-row">
+      <span class="foot-brand">PORK&nbsp;<span>MATTERS</span></span>
+      <span class="foot-copy">© 2567 EK Slaughterhouse Co., Ltd · Freshour Market · All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('b2bForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.hidden = true;
+    document.getElementById('formOK').hidden = false;
+  });
+</script>
