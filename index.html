@@ -601,6 +601,52 @@ footer {
   .step { border-right: none; border-bottom: 1px solid var(--line); padding: 24px 0; }
   .step:last-child { border-bottom: none; padding-left: 0; }
 }
+
+/* ── IN-STORE ── */
+.instore { padding: 80px 0; }
+.instore-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+.instore-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+/* ── FACTSHEET ── */
+.factsheet { background: var(--story-bg); color: var(--story-fg); padding: 80px 0; }
+.fact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 40px;
+}
+.mou-img { width: 100%; border-radius: 4px; display: block; }
+.fact-list { display: flex; flex-direction: column; gap: 24px; }
+.fact-item { display: flex; gap: 14px; align-items: flex-start; }
+.fact-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0; margin-top: 7px;
+}
+.fact-item h4 {
+  font-family: var(--sans); font-weight: 600; font-size: .9rem;
+  color: var(--red); margin: 0 0 4px;
+}
+.fact-item p {
+  font-family: var(--sans); font-size: .82rem;
+  color: var(--story-2); margin: 0; line-height: 1.65;
+}
+@media (max-width: 640px) {
+  .instore-grid { grid-template-columns: 1fr; }
+  .instore-img { height: 220px; }
+  .fact-layout { grid-template-columns: 1fr; }
+}
 </style>
 
 <!-- ── NAV ── -->
@@ -642,9 +688,9 @@ footer {
         <div class="stat-lt">โอเมก้า-3 สูงกว่าหมูทั่วไป</div>
       </div>
       <div class="stat-divider" style="padding-inline:24px">
-        <div class="stat-n">10<b>+</b></div>
+        <div class="stat-n">40<b>+</b></div>
         <div class="stat-l">Years of Expertise</div>
-        <div class="stat-lt">ปีแห่งประสบการณ์</div>
+        <div class="stat-lt">ปีแห่งประสบการณ์ (Since 1982)</div>
       </div>
       <div style="padding-left:24px">
         <div class="stat-n"><b>9</b></div>
@@ -846,6 +892,63 @@ footer {
       <span class="ptag">Royal Osha — Chef Collaboration ✦</span>
     </div>
     <p style="margin-top:20px;font-size:.8rem;color:var(--fg-3)">และอีกหลายสาขาที่กำลังขยายในปี 2570</p>
+  </div>
+</section>
+
+<!-- ── IN STORE ── -->
+<section class="instore">
+  <div class="w">
+    <p class="lbl">Premium Retail Presence</p>
+    <h2 class="display" style="margin-bottom:8px">วางจำหน่ายในร้านชั้นนำ</h2>
+    <p style="color:var(--fg-2);font-size:.88rem;margin-bottom:0">ภาพชั้นวางของจริงที่ Gourmet Market</p>
+    <div class="instore-grid">
+      <img src="img-shelf.jpg" alt="Pork Matters shelf display at Gourmet Market" class="instore-img" loading="lazy">
+      <img src="img-product.jpg" alt="Pork Matters premium pork cuts" class="instore-img" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERSHIP ── -->
+<section class="factsheet">
+  <div class="w">
+    <p class="lbl" style="color:var(--red)">Global Partnership &amp; Standards</p>
+    <h2 class="display" style="color:var(--story-fg);margin-bottom:0">พาร์ทเนอร์ชิประดับโลก<br>เพื่อหมูที่ดีที่สุด</h2>
+    <div class="fact-layout">
+      <div>
+        <img src="img-mou.jpg" alt="EKS x Cargill MOU signing ceremony" class="mou-img" loading="lazy">
+        <p style="font-size:.72rem;color:var(--story-2);margin-top:8px;text-align:center;font-family:var(--sans)">MOU ลงนาม 6 มิถุนายน 2565 — Freshour × Cargill Thailand</p>
+      </div>
+      <div class="fact-list">
+        <div class="fact-item">
+          <span class="fact-dot"></span>
+          <div>
+            <h4>MOU กับ Cargill Thailand</h4>
+            <p>ลงนาม 6 มิถุนายน 2565 ควบคุมคุณภาพตั้งแต่ต้นน้ำ อาหารสุกร 100% Flaxseed นำเข้าจากยุโรป เป็นแหล่งโอเมก้า-3 บริสุทธิ์</p>
+          </div>
+        </div>
+        <div class="fact-item">
+          <span class="fact-dot"></span>
+          <div>
+            <h4>วิจัยและรับรองโดย KMITL</h4>
+            <p>ผลตรวจยืนยัน Omega-3 &gt; 160 mg/100g ตรงตามมาตรฐาน FDA &amp; USDA วิจัยร่วม 3 ปีเต็ม</p>
+          </div>
+        </div>
+        <div class="fact-item">
+          <span class="fact-dot"></span>
+          <div>
+            <h4>มาตรฐานส่งออก EST + ปศุสัตว์ OK</h4>
+            <p>โรงงานมาตรฐานสากล ปลอดยาปฏิชีวนะ 100% ฟาร์ม Biosecurity &amp; Smart Farm รับรอง ณ จุดขาย</p>
+          </div>
+        </div>
+        <div class="fact-item">
+          <span class="fact-dot"></span>
+          <div>
+            <h4>Cold Chain &amp; ตรวจสอบย้อนกลับได้</h4>
+            <p>ส่งตรงจากโรงงานถึงครัวของคุณ ทุกชิ้นตรวจสอบย้อนกลับได้ผ่านระบบดิจิทัล</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
